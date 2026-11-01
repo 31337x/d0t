@@ -1,0 +1,181 @@
+config_version = 16
+
+[bar.default]
+background_opacity = 0.90000000000000002
+compositor_blur = true
+concave_edge_corners = false
+end = [ "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "brightness", "battery", "session" ]
+hover_highlight = false
+margin_edge = 5
+start = [ "launcher", "workspaces", "audio_visualizer" ]
+
+[control_center]
+show_avatar_border = false
+
+    [control_center.calendar]
+    show_events_card = false
+
+    [control_center.media]
+    show_visualizer = false
+
+[dock]
+
+[hooks]
+colors_changed = "systemctl --user restart xdg-desktop-portal-gtk.service"
+theme_mode_changed = "systemctl --user restart xdg-desktop-portal-gtk.service"
+
+[idle]
+behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
+pre_action_fade_seconds = 0
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 300.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = false
+    timeout = 900.0
+
+    [idle.behavior.screen-off]
+    action = "command"
+    command = "umbriel msg dpms-off"
+    enabled = true
+    resume_command = "umbriel msg dpms-on"
+    timeout = 360.0
+
+[location]
+auto_locate = true
+
+[lockscreen]
+transition = [ "zoom" ]
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 960.0
+    cy = 895.0
+    output = "eDP-1"
+    placement_height = 1080.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.0
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 0.5
+        input_radius = 6.0
+        layout = "compact"
+        show_caps_lock = false
+        show_keyboard_layout = false
+        show_login_button = false
+        show_media = true
+        show_password_reveal = false
+        show_session_buttons = true
+        show_unlock_hint = false
+        show_weather = true
+
+[notification]
+background_opacity = 0.90000000000000002
+
+[osd]
+background_opacity = 0.90000000000000002
+
+[plugins]
+enabled = [ "kenn/keybind-cheatsheet" ]
+
+[shell]
+app_icon_color = "tertiary"
+polkit_agent = true
+settings_window_translucent = true
+time_format = "{:%I:%M %p}"
+umbriel_audio_provider_enabled = true
+umbriel_overview_type_to_launch_enabled = true
+
+    [shell.greeter_sync]
+    auto_sync = true
+
+    [shell.launcher]
+    categories = false
+    layout = "simple"
+    sort_by_usage = false
+    track_usage = false
+
+    [shell.panel]
+    clipboard_placement = "attached"
+    clipboard_position = "auto"
+    launcher_placement = "attached"
+    launcher_position = "auto"
+    open_near_click_clipboard = true
+    open_near_click_control_center = true
+    open_near_click_launcher = true
+    open_near_click_wallpaper = true
+    polkit_placement = "attached"
+    polkit_position = "auto"
+    session_placement = "floating"
+    session_position = "center"
+    transparency_mode = "glass"
+
+    [shell.screenshot]
+    annotate = true
+    confirm_region = true
+    copy_on_close = true
+    directory = "/home/r00t/Pictures/Screenshots"
+    show_region_dimensions = false
+    skip_annotate_on_copy_save = true
+
+    [shell.window_switcher]
+    show_caption = false
+
+[theme]
+builtin = "Dracula"
+mode = "dark"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "gtk3", "gtk4", "helix", "kitty", "umbriel" ]
+    community_ids = [ "codex", "zen-browser", "bat", "fzf", "starship", "yazi" ]
+
+[wallpaper]
+directory = "/home/r00t/Pictures/Wallpapers"
+directory_dark = "/home/r00t/Pictures/Wallpapers"
+directory_light = "/home/r00t/Pictures/Wallpapers"
+transition = [ "zoom" ]
+
+    [wallpaper.default]
+    path = "/home/r00t/Pictures/Wallpapers/007.jpg"
+
+    [wallpaper.last]
+    path = "/home/r00t/Pictures/Wallpapers/007.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/r00t/Pictures/Wallpapers/007.jpg"
+
+[widget.audio_visualizer]
+bands = 128
+color_2 = "secondary"
+mirrored = false
+show_when_idle = true
+width = 128
+
+    [widget.audio_visualizer.actions]
+    left = "panel-toggle control-center media"
+
+[widget.clock]
+format = "{:%I:%M %p}"
+
+[widget.workspaces.actions]
+right = "panel-toggle media"

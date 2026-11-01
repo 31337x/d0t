@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Codex
+GenericName=AI Coding Assistant
+Comment=Open Codex in Kitty
+Exec=/usr/bin/kitty --class codex --title Codex --directory /home/r00t -e /home/r00t/.local/bin/codex
+TryExec=/home/r00t/.local/bin/codex
+Icon=utilities-terminal
+Terminal=false
+Categories=Development;
+Keywords=codex;ai;coding;assistant;
+StartupNotify=true
+StartupWMClass=codex

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Yazi
+Icon=/usr/share/icons/hicolor/1024x1024/apps/yazi.png
+Comment=File Manager
+Terminal=true
+TryExec=yazi
+Exec=yazi %f
+Type=Application
+MimeType=inode/directory
+Categories=System;FileManager;FileTools;ConsoleOnly
+Keywords=File;Manager;Explorer;Browser;Launcher
