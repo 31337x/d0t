@@ -6,7 +6,7 @@
 #   cd d0t
 #   bash install.sh
 # Files land in /home/<that user>. A curl launch clones the repo first.
-# Override the address with D0T_REPO_URL if the default below is still a placeholder.
+# Override the address with D0T_REPO_URL.
 set -euo pipefail
 
 REPO_URL="${D0T_REPO_URL:-https://github.com/31337x/d0t.git}"
@@ -59,7 +59,6 @@ if [[ "${D0T_BOOTSTRAPPED:-0}" != 1 ]]; then
     fi
   fi
   if [[ -z "$SRC" ]]; then
-    [[ "$REPO_URL" != *"31337x"* ]] || die "Set D0T_REPO_URL to this GitHub repo, then run again."
     log "Cloning $REPO_URL"
     if ! command -v git >/dev/null 2>&1; then
       sudo dnf install -y git-core
