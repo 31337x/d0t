@@ -1,7 +1,6 @@
-config_version = 16
+config_version = 19
 
 [bar.default]
-background_opacity = 0.90000000000000002
 compositor_blur = true
 concave_edge_corners = false
 end = [ "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "brightness", "battery", "session" ]
@@ -54,12 +53,41 @@ transition = [ "zoom" ]
 [lockscreen_widgets]
 enabled = true
 schema_version = 2
-widget_order = [ "lockscreen-login-box@eDP-1" ]
+widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@DP-2" ]
 
     [lockscreen_widgets.grid]
     cell_size = 16
     major_interval = 4
     visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@DP-2"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 1599.5
+    cy = 1647.4176025390625
+    output = "DP-2"
+    placement_height = 1799.0
+    placement_width = 3199.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@DP-2".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 70.0
@@ -84,24 +112,21 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
         show_keyboard_layout = false
         show_login_button = false
         show_media = true
+        show_media_controls = true
         show_password_reveal = false
         show_session_buttons = true
         show_unlock_hint = false
         show_weather = true
 
-[notification]
-background_opacity = 0.90000000000000002
-
-[osd]
-background_opacity = 0.90000000000000002
+[plugin_settings."oldirtty/color_picker"]
+picker_tool = "grim_slurp"
 
 [plugins]
-enabled = [ "kenn/keybind-cheatsheet" ]
+enabled = [ "kenn/keybind-cheatsheet", "oldirtty/color_picker" ]
 
 [shell]
 app_icon_color = "tertiary"
 polkit_agent = true
-settings_window_translucent = true
 time_format = "{:%I:%M %p}"
 umbriel_audio_provider_enabled = true
 umbriel_overview_type_to_launch_enabled = true
@@ -111,6 +136,7 @@ umbriel_overview_type_to_launch_enabled = true
 
     [shell.launcher]
     categories = false
+    compact = true
     layout = "simple"
     sort_by_usage = false
     track_usage = false
@@ -128,7 +154,6 @@ umbriel_overview_type_to_launch_enabled = true
     polkit_position = "auto"
     session_placement = "floating"
     session_position = "center"
-    transparency_mode = "glass"
 
     [shell.screenshot]
     annotate = true
@@ -143,7 +168,9 @@ umbriel_overview_type_to_launch_enabled = true
 
 [theme]
 builtin = "Dracula"
+community_palette = "Kanagawa Paper"
 mode = "dark"
+source = "community"
 
     [theme.templates]
     builtin_ids = [ "btop", "gtk3", "gtk4", "helix", "kitty", "umbriel" ]
@@ -156,26 +183,29 @@ directory_light = "/home/r00t/Pictures/Wallpapers"
 transition = [ "zoom" ]
 
     [wallpaper.default]
-    path = "/home/r00t/Pictures/Wallpapers/007.jpg"
+    path = "/home/r00t/Pictures/Wallpapers/008.jpg"
 
     [wallpaper.last]
-    path = "/home/r00t/Pictures/Wallpapers/007.jpg"
+    path = "/home/r00t/Pictures/Wallpapers/008.jpg"
+
+    [wallpaper.monitors.DP-2]
+    path = "/home/r00t/Pictures/Wallpapers/008.jpg"
 
     [wallpaper.monitors.eDP-1]
     path = "/home/r00t/Pictures/Wallpapers/007.jpg"
 
 [widget.audio_visualizer]
 bands = 128
-color_2 = "secondary"
 mirrored = false
+scale = 1.2
 show_when_idle = true
 width = 128
 
-    [widget.audio_visualizer.actions]
-    left = "panel-toggle control-center media"
-
 [widget.clock]
 format = "{:%I:%M %p}"
+
+[widget.tray]
+drawer = true
 
 [widget.workspaces.actions]
 right = "panel-toggle media"
