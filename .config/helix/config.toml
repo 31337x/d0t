@@ -1,0 +1,6 @@
+theme = "noctalia"
+
+[editor.indent-guides]
+render = true
+character = "│"
+skip-levels = 0
