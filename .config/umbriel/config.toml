@@ -61,10 +61,10 @@ autostart = ["noctalia"]
 # Outputs are machine-specific. Run `umbriel outputs` to find names and modes.
 # https://docs.noctalia.dev/umbriel/outputs/
 #
-# [output.DP-1]
-# mode = "2560x1440@144"
+ [output.DP-2]
+ mode = "3840x2160@160"
 # position = [0, 0]
-# scale = 1.25
+scale = 1.2
 # vrr = "fullscreen"
 # hdr = "auto"
 # sdr_transfer = "gamma22" # Or "srgb" for piecewise SDR decoding in HDR.
@@ -76,6 +76,7 @@ autostart = ["noctalia"]
 #
 [appearance]
 border_width = 1
+corner_radius = 0
 
 [appearance.blur]
 enabled = true
@@ -169,6 +170,7 @@ numlock_toggle = true
 
 # Category: System
 "Mod+K" = { action = "spawn noctalia msg panel-toggle kenn/keybind-cheatsheet:cheatsheet", repeat = false } # Keybinds
+"Mod+P" = { action = "spawn noctalia msg plugin oldirtty/color_picker:service all pick", repeat = false } # Color Picker
 "Mod+Z" = { action = "spawn noctalia msg settings-open", repeat = false } # Settings
 "Mod+O" = { action = "overview-toggle", repeat = false } # Overview
 "Mod+L" = { action = "spawn noctalia msg session lock", repeat = false } # Lock Screen
@@ -177,12 +179,12 @@ numlock_toggle = true
 
 # Category: Hardware Keys
 "Print" = { action = "spawn noctalia msg screenshot-region", repeat = false } # Screenshot
-"XF86AudioRaiseVolume" = { action = "spawn noctalia msg volume-up", allow_when_locked = true } # Volume Up
-"XF86AudioLowerVolume" = { action = "spawn noctalia msg volume-down", allow_when_locked = true } # Volume Down
-"XF86AudioMute" = { action = "spawn noctalia msg volume-mute", allow_when_locked = true, repeat = false } # Mute Audio
-"XF86AudioMicMute" = { action = "spawn noctalia msg mic-mute", allow_when_locked = true, repeat = false } # Mute Mic
-"XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up", allow_when_locked = true } # Brightness Up
-"XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down", allow_when_locked = true } # Brightness Down
+#"XF86AudioRaiseVolume" = { action = "spawn noctalia msg volume-up", allow_when_locked = true } # Volume Up
+#"XF86AudioLowerVolume" = { action = "spawn noctalia msg volume-down", allow_when_locked = true } # Volume Down
+#"XF86AudioMute" = { action = "spawn noctalia msg volume-mute", allow_when_locked = true, repeat = false } # Mute Audio
+#"XF86AudioMicMute" = { action = "spawn noctalia msg mic-mute", allow_when_locked = true, repeat = false } # Mute Mic
+#"XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up", allow_when_locked = true } # Brightness Up
+#"XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down", allow_when_locked = true } # Brightness Down
 
 # Category: Window Management
 "Mod+C" = { action = "window-center", repeat = false } # Center Floating
@@ -235,7 +237,7 @@ numlock_toggle = true
 # their most recently focused row when focus leaves and later returns.
 # https://docs.noctalia.dev/umbriel/layout/
 [layout]
-mode = "master"
+mode = "dwindle"
 # mode = "scrolling" # "scrolling", "dwindle", "master", or "floating".
 extent_presets = [0.333, 0.5, 0.667]
 
@@ -272,9 +274,11 @@ default_extent_fraction = 0.5
 # Blur windows over the cached wallpaper blur. Set blur_optimized = false to
 # include overlapping windows behind them, at a GPU cost on every frame that
 # moves anything behind them.
-[[window_rule]]
-blur = true
-opacity = 0.9
+
+# [[window_rule]]
+# blur = true
+# opacity = 0.9
+
 [[window_rule]]
 match.app_id = "^dev.noctalia.Noctalia$"
 default_floating = true
