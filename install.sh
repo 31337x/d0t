@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
-# Fedora post-install for this desktop.
-# Install Fedora from USB yourself, boot it, log in as the user who should
-# own the files, then:
 #   git clone https://github.com/31337x/d0t.git
 #   cd d0t
 #   bash install.sh
 # Files land in /home/<that user>. A curl launch clones the repo first.
-# Override the address with D0T_REPO_URL.
 set -euo pipefail
 
-REPO_URL="${D0T_REPO_URL:-https://github.com/31337x/d0t.git}"
-BRANCH="${D0T_BRANCH:-main}"
+REPO_URL="https://github.com/31337x/d0t.git"
+BRANCH="main"
 
 log() { printf '\n==> %s\n' "$*"; }
 die() { printf 'error: %s\n' "$*" >&2; exit 1; }
@@ -38,50 +34,6 @@ sudo_keepalive() {
 sudo_keepalive &
 SUDO_KEEPALIVE_PID=$!
 trap 'kill "$SUDO_KEEPALIVE_PID" 2>/dev/null || true' EXIT
-
-have_dotfiles() {
-  local dir=$1
-  [[ -f "$dir/.bashrc" && -d "$dir/.config" && -d "$dir/.local" && -d "$dir/Pictures" ]]
-}
-
-script_dir() {
-  local source=${BASH_SOURCE[0]:-}
-  [[ -n "$source" && -f "$source" ]] || return 1
-  cd "$(dirname "$source")" && pwd
-}
-
-# curl | bash has no files beside the script, so clone the repo and re-run.
-if [[ "${D0T_BOOTSTRAPPED:-0}" != 1 ]]; then
-  SRC=""
-  if DIR="$(script_dir)"; then
-    if have_dotfiles "$DIR"; then
-      SRC=$DIR
-    fi
-  fi
-  if [[ -z "$SRC" ]]; then
-    log "Cloning $REPO_URL"
-    if ! command -v git >/dev/null 2>&1; then
-      sudo dnf install -y git-core
-    fi
-    clone_dir="${XDG_CACHE_HOME:-$HOME/.cache}/d0t"
-    mkdir -p "$(dirname "$clone_dir")"
-    if [[ -d "$clone_dir/.git" ]]; then
-      git -C "$clone_dir" fetch --depth 1 origin "$BRANCH"
-      git -C "$clone_dir" checkout "$BRANCH"
-      git -C "$clone_dir" reset --hard "origin/$BRANCH"
-    else
-      rm -rf "$clone_dir"
-      git clone --depth 1 --branch "$BRANCH" "$REPO_URL" "$clone_dir"
-    fi
-    export D0T_BOOTSTRAPPED=1
-    kill "$SUDO_KEEPALIVE_PID" 2>/dev/null || true
-    trap - EXIT
-    exec bash "$clone_dir/install.sh"
-  fi
-else
-  SRC="$(script_dir)" || die "Could not find the cloned setup files."
-  have_dotfiles "$SRC" || die "Cloned repo is missing .bashrc, .config, .local, or Pictures."
-fi
 
 write_root_file() {
   local dest=$1
@@ -132,50 +84,82 @@ sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.co
 log "Updating the system"
 sudo dnf upgrade --refresh -y
 
-log "Installing the desktop, shell, and tools"
+log "Installing oo7 secrets management"
+sudo dnf install -y oo7-daemon pam_oo7
+
+log "Installing greetd"
+sudo dnf install -y greetd
+
+log "Installing the desktop environment"
+sudo dnf install -y noctalia-nightly umbriel-nightly noctalia-greeter adw-gtk3-theme
+
+log "Installing audio components"
+sudo dnf install -y pipewire pipewire-alsa pipewire-pulseaudio pipewire-utils wireplumber
+
+log "Installing system and boot components"
+sudo dnf install -y plymouth-theme-spinner tuned tuned-ppd
+
+log "Installing fonts"
 sudo dnf install -y \
-  iwlwifi-mvm-firmware \
-  plymouth-theme-spinner \
   google-noto-sans-arabic-vf-fonts \
   google-noto-naskh-arabic-vf-fonts \
   google-noto-color-emoji-fonts \
   google-noto-sans-symbols-vf-fonts \
-  google-noto-sans-math-fonts \
-  tuned \
-  tuned-ppd \
-  noctalia \
-  noctalia-greeter \
-  greetd \
-  umbriel-nightly \
-  kitty \
-  yazi \
-  helix \
-  helix-parsers \
-  gnome-keyring-pam \
-  zen-browser \
-  mpv \
-  imv \
-  btop \
-  freerdp \
-  openfortivpn \
-  git-core \
-  tar \
-  bat \
-  fzf \
-  zoxide \
-  starship \
-  fastfetch \
-  xdg-user-dirs \
-  adw-gtk3-theme \
-  cursor \
-  upower \
-  yt-dlp \
-  pipewire-pulseaudio \
-  pipewire-alsa
+  google-noto-sans-math-fonts
 
+log "Installing applications and utilities"
+sudo dnf install -y \
+  cursor zen-browser kitty yazi helix btop bat fzf zoxide starship \
+  fastfetch git-core tar ripgrep fd-find mpv imv freerdp \
+  openfortivpn yt-dlp upower grim slurp ddcutil
+
+log "Installing full FFmpeg from RPM Fusion"
 if rpm -q ffmpeg-free >/dev/null 2>&1; then
-  log "Replacing ffmpeg-free with ffmpeg"
   sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
+else
+  sudo dnf install -y ffmpeg --allowerasing
+fi
+sudo dnf install -y ffmpeg-libs --allowerasing
+
+log "Optional hardware packages"
+read -r -p "Install Intel Wi-Fi firmware? [y/N]: " intel_wifi < /dev/tty
+if [[ "$intel_wifi" =~ ^[Yy]$ ]]; then
+  sudo dnf install -y iwlwifi-mvm-firmware
+fi
+read -r -p "Install AMD ROCm utilities? [y/N]: " amd_rocm < /dev/tty
+if [[ "$amd_rocm" =~ ^[Yy]$ ]]; then
+  sudo dnf install -y rocm-smi
+fi
+
+have_dotfiles() {
+  local dir=$1
+  [[ -f "$dir/.bashrc" && -d "$dir/.config" && -d "$dir/.local" && -d "$dir/Pictures" ]]
+}
+
+script_dir() {
+  local source=${BASH_SOURCE[0]:-}
+  [[ -n "$source" && -f "$source" ]] || return 1
+  cd "$(dirname "$source")" && pwd
+}
+
+# Resolve dotfiles after Git has been installed with the applications.
+SRC=""
+if DIR="$(script_dir)" && have_dotfiles "$DIR"; then
+  SRC="$DIR"
+else
+  log "Cloning $REPO_URL"
+  clone_dir="${XDG_CACHE_HOME:-$HOME/.cache}/d0t"
+  mkdir -p "$(dirname "$clone_dir")"
+  if [[ -d "$clone_dir/.git" ]]; then
+    git -C "$clone_dir" fetch --depth 1 origin "$BRANCH"
+    git -C "$clone_dir" checkout "$BRANCH"
+    git -C "$clone_dir" reset --hard "origin/$BRANCH"
+  else
+    rm -rf "$clone_dir"
+    git clone --depth 1 --branch "$BRANCH" "$REPO_URL" "$clone_dir"
+  fi
+  SRC="$clone_dir"
+  have_dotfiles "$SRC" || die "Cloned repo is missing .bashrc, .config, .local, or Pictures."
 fi
 
 log "Shortening the boot menu"
@@ -238,32 +222,35 @@ if sudo test -f "$greeter_file"; then
 else
   printf ''
 fi | awk '
-  BEGIN { in_appearance = 0; done = 0 }
-  /^\[appearance\]/ { in_appearance = 1; print; next }
-  /^\[/ {
-    if (in_appearance && !done) {
-      print "hide_logo = true"
-      done = 1
+  function finish_section() {
+    if (section == "appearance" && !seen_hide) print "hide_logo = true"
+    if (section == "clock") {
+      if (!seen_enabled) print "enabled = true"
+      if (!seen_format) print "time_format = \"{:%-I:%M %p}\""
     }
-    in_appearance = 0
+  }
+  /^\[/ {
+    finish_section()
+    section = ""
+    if ($0 == "[appearance]") { section = "appearance"; has_appearance = 1; seen_hide = 0 }
+    if ($0 == "[clock]") { section = "clock"; has_clock = 1; seen_enabled = 0; seen_format = 0 }
     print
     next
   }
-  in_appearance && /^[[:space:]]*hide_logo[[:space:]]*=/ {
-    print "hide_logo = true"
-    done = 1
-    next
+  section == "appearance" && /^[[:space:]]*hide_logo[[:space:]]*=/ {
+    print "hide_logo = true"; seen_hide = 1; next
+  }
+  section == "clock" && /^[[:space:]]*enabled[[:space:]]*=/ {
+    print "enabled = true"; seen_enabled = 1; next
+  }
+  section == "clock" && /^[[:space:]]*time_format[[:space:]]*=/ {
+    print "time_format = \"{:%-I:%M %p}\""; seen_format = 1; next
   }
   { print }
   END {
-    if (done) exit
-    if (in_appearance) {
-      print "hide_logo = true"
-    } else {
-      print ""
-      print "[appearance]"
-      print "hide_logo = true"
-    }
+    finish_section()
+    if (!has_appearance) print "\n[appearance]\nhide_logo = true"
+    if (!has_clock) print "\n[clock]\nenabled = true\ntime_format = \"{:%-I:%M %p}\""
   }
 ' | write_root_file "$greeter_file"
 sudo chown greetd:"$(id -gn greetd)" "$greeter_file"
@@ -281,7 +268,6 @@ systemctl --user enable --now pipewire-pulse.socket
 systemctl --user restart pipewire wireplumber pipewire-pulse
 
 log "Installing your files into ${TARGET_HOME}"
-xdg-user-dirs-update
 mkdir -p "$TARGET_HOME/.config" "$TARGET_HOME/.local" "$TARGET_HOME/Pictures/Screenshots"
 cp -a "$SRC/.bashrc" "$TARGET_HOME/.bashrc"
 cp -a "$SRC/.config/." "$TARGET_HOME/.config/"
