@@ -61,10 +61,10 @@ autostart = ["noctalia"]
 # Outputs are machine-specific. Run `umbriel outputs` to find names and modes.
 # https://docs.noctalia.dev/umbriel/outputs/
 #
- [output.DP-2]
- mode = "3840x2160@160"
+# [output.DP-2]
+# mode = "3840x2160@160"
 # position = [0, 0]
-scale = 1.2
+# scale = 1.2
 # vrr = "fullscreen"
 # hdr = "auto"
 # sdr_transfer = "gamma22" # Or "srgb" for piecewise SDR decoding in HDR.
