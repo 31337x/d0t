@@ -316,26 +316,6 @@ done < <(grep -rlZ --binary-files=without-match /home/r00t \
 fc-cache -f
 sudo setcap cap_perfmon=+ep "$(readlink -f "$(command -v btop)")"
 
-log "Installing Codex (automatically decline launch)"
-sudo dnf install -y expect
-codex_installer="$(mktemp)"
-curl -fsSL https://chatgpt.com/codex/install.sh -o "$codex_installer"
-# Expect waits for the actual /dev/tty prompt before answering.
-CODEX_INSTALLER_PATH="$codex_installer" expect -c '
-  set timeout -1
-  spawn sh $env(CODEX_INSTALLER_PATH)
-  expect {
-    -re {Start Codex now\?} {
-      send -- "n\r"
-      exp_continue
-    }
-    eof {}
-  }
-  set status [wait]
-  exit [lindex $status 3]
-'
-rm -f "$codex_installer"
-
 log "Removing packages that are no longer needed"
 sudo dnf autoremove -y
 
