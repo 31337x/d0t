@@ -117,8 +117,8 @@ fi
 log "Updating the system"
 sudo dnf upgrade --refresh -y
 
-log "Installing oo7 secrets management"
-sudo dnf install -y oo7-daemon pam_oo7
+log "Installing GNOME Keyring"
+sudo dnf install -y gnome-keyring gnome-keyring-pam
 
 log "Installing greetd"
 sudo dnf install -y greetd
