@@ -307,8 +307,9 @@ sudo setcap cap_perfmon=+ep "$(readlink -f "$(command -v btop)")"
 log "Installing Codex (do not launch after installation)"
 codex_installer="$(mktemp)"
 curl -fsSL https://chatgpt.com/codex/install.sh -o "$codex_installer"
-# Feed 'no' to the post-install launch question without disrupting the download.
-printf 'n\n' | sh "$codex_installer"
+# Codex reads the launch confirmation from /dev/tty, not standard input.
+# Run it in a pseudo-terminal and automatically answer No.
+printf 'n\n' | script -q -e -c "sh '$codex_installer'" /dev/null
 rm -f "$codex_installer"
 
 log "Removing packages that are no longer needed"
