@@ -40,10 +40,8 @@ ask_yes_no() {
 log "Choose optional components before installation"
 INSTALL_INTEL_WIFI=false
 INSTALL_AMD_ROCM=false
-INSTALL_CODEX=false
 if ask_yes_no "Install Intel Wi-Fi firmware? [y/N]: " n; then INSTALL_INTEL_WIFI=true; fi
 if ask_yes_no "Install AMD ROCm utilities? [y/N]: " n; then INSTALL_AMD_ROCM=true; fi
-if ask_yes_no "Install OpenAI Codex? [Y/n]: " y; then INSTALL_CODEX=true; fi
 log "Choices saved. Starting installation."
 
 sudo -v
@@ -302,12 +300,9 @@ done < <(grep -rlZ --binary-files=without-match /home/r00t \
 fc-cache -f
 sudo setcap cap_perfmon=+ep "$(readlink -f "$(command -v btop)")"
 
-if [[ "$INSTALL_CODEX" == true ]]; then
-  log "Installing Codex"
-  curl -fsSL https://chatgpt.com/codex/install.sh | sh
-else
-  log "Skipping Codex"
-fi
+log "Installing Codex (do not launch after installation)"
+# Answer 'no' if the official installer asks whether to launch Codex.
+curl -fsSL https://chatgpt.com/codex/install.sh | sh -s -- </dev/null
 
 log "Removing packages that are no longer needed"
 sudo dnf autoremove -y
