@@ -301,8 +301,11 @@ fc-cache -f
 sudo setcap cap_perfmon=+ep "$(readlink -f "$(command -v btop)")"
 
 log "Installing Codex (do not launch after installation)"
-# Answer 'no' if the official installer asks whether to launch Codex.
-curl -fsSL https://chatgpt.com/codex/install.sh | sh -s -- </dev/null
+codex_installer="$(mktemp)"
+curl -fsSL https://chatgpt.com/codex/install.sh -o "$codex_installer"
+# Feed 'no' to the post-install launch question without disrupting the download.
+printf 'n\n' | sh "$codex_installer"
+rm -f "$codex_installer"
 
 log "Removing packages that are no longer needed"
 sudo dnf autoremove -y
