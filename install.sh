@@ -99,7 +99,11 @@ log "Enabling RPM Fusion and Terra"
 release="$(rpm -E %fedora)"
 sudo dnf install -y "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-${release}.noarch.rpm"
 sudo dnf install -y "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-${release}.noarch.rpm"
-sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+if rpm -q terra-release >/dev/null 2>&1; then
+  log "Terra is already installed; skipping repository bootstrap"
+else
+  sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+fi
 
 log "Updating the system"
 sudo dnf upgrade --refresh -y
