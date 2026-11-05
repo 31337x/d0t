@@ -321,9 +321,9 @@ sudo dnf install -y expect
 codex_installer="$(mktemp)"
 curl -fsSL https://chatgpt.com/codex/install.sh -o "$codex_installer"
 # Expect waits for the actual /dev/tty prompt before answering.
-expect -c '
+CODEX_INSTALLER_PATH="$codex_installer" expect -c '
   set timeout -1
-  spawn sh [lindex $argv 0]
+  spawn sh $env(CODEX_INSTALLER_PATH)
   expect {
     -re {Start Codex now\?} {
       send -- "n\r"
@@ -333,7 +333,7 @@ expect -c '
   }
   set status [wait]
   exit [lindex $status 3]
-' "$codex_installer"
+'
 rm -f "$codex_installer"
 
 log "Removing packages that are no longer needed"
