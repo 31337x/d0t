@@ -5,6 +5,18 @@
 # Files land in /home/<that user>. A curl launch clones the repo first.
 set -euo pipefail
 
+# When launched with curl | bash, save and syntax-check the entire script
+# before running commands that could consume its standard-input stream.
+if [[ -z "${BASH_SOURCE[0]:-}" ]]; then
+  installer_tmp="$(mktemp)"
+  curl -fsSL https://raw.githubusercontent.com/31337x/d0t/main/install.sh -o "$installer_tmp" </dev/null
+  bash -n "$installer_tmp" || { rm -f "$installer_tmp"; exit 1; }
+  bash "$installer_tmp"
+  result=$?
+  rm -f "$installer_tmp"
+  exit "$result"
+fi
+
 REPO_URL="https://github.com/31337x/d0t.git"
 BRANCH="main"
 
