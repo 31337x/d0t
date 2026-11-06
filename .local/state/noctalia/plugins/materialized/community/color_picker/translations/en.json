@@ -1,0 +1,67 @@
+{
+  "color_copied": "Color {color} copied.",
+  "color_picked": "Color {color} picked.",
+  "color_picker": "Color Picker",
+  "could_not_parse": "Could not parse output.",
+  "glyph": "Glyph",
+  "no_color_picked": "No color picked yet.",
+  "no_history": "No colors in history yet.",
+  "opacity": "Opacity",
+  "rgb": "RGB",
+  "settings": {
+    "circular-swatch": {
+      "description": "Use circular swatches for recent colors; disable to follow the shell's corner roundness",
+      "label": "Circular Swatches"
+    },
+    "hyprpicker_cursor": {
+      "description": "Includes the cursor in the frozen screen preview.",
+      "label": "Show cursor"
+    },
+    "hyprpicker_disable_preview": {
+      "description": "Turns off the live color preview while picking.",
+      "label": "Disable Live Preview"
+    },
+    "hyprpicker_format": {
+      "description": "Default color format to copy to clipboard (Hex or RGB).",
+      "label": "Default Format"
+    },
+    "hyprpicker_no_zoom": {
+      "description": "Turns off the magnifying zoom lens while picking.",
+      "label": "Disable Zoom Lens"
+    },
+    "hyprpicker_radius": {
+      "description": "Zoom lens circle radius in pixels, from 1 to 1000.",
+      "label": "Zoom Radius"
+    },
+    "hyprpicker_scale": {
+      "description": "Zoom lens magnification, from 1 to 10.",
+      "label": "Zoom Scale"
+    },
+    "lowercase-hex": {
+      "description": "Outputs the hexcode in lowercase.",
+      "label": "Lowercase Hex"
+    },
+    "main-colorspace": {
+        "label": "Main Colorspace",
+        "description": "Main colorspace for hyprpicker and panel.",
+        "options": {
+          "hex": "HEX",
+          "rgb": "RGB(A)",
+          "hsl": "HSL(A)"
+        }
+    },
+    "notify-on-copy": {
+      "description": "Notify on color copy through screen pick or panel button.",
+      "label": "Notify on Copy"
+    },
+    "picker_tool": {
+        "label": "Picker Tool",
+        "description": "Tool used to pick colors from the screen.",
+        "options": {
+          "hyprpicker": "Hyprpicker",
+          "grim_slurp": "Grim + Slurp"
+        }
+    }
+  },
+  "tool_missing": "{tool} not installed. You can change the picker tool in the plugin settings."
+}
