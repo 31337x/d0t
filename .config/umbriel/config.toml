@@ -162,7 +162,7 @@ numlock_toggle = true
 # Category: Applications
 "Mod+Space" = { action = "spawn noctalia msg panel-toggle launcher", repeat = false } # Launcher
 "Mod+Return" = { action = "spawn kitty", repeat = false } # Terminal
-"Mod+B" = { action = "spawn zen-browser", repeat = false } # Web Browser
+"Mod+B" = { action = "spawn helium-browser-bin", repeat = false } # Web Browser
 "Mod+Y" = { action = "spawn kitty -e yazi", repeat = false } # File Manager
 "Mod+H" = { action = "spawn kitty -e hx", repeat = false } # Text Editor
 "Mod+A" = { action = "spawn kitty --class codex --title Codex --directory /home/r00t -e /home/r00t/.local/bin/codex", repeat = false } # AI Agent
