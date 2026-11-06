@@ -30,74 +30,74 @@
             "outputColor": "36"
         },
         {
-            "key": "│ {#35} kernel  {#keys}│",
-            "type": "command",
-            "text": "printf 'Linux %s' \"$(uname -r | cut -d- -f1)\"",
+            "key": "│ {#35}󰏖 pkg     {#keys}│",
+            "type": "packages",
             "outputColor": "35"
         },
         {
-            "key": "│ {#34}󰇄 desktop {#keys}│",
-            "type": "de",
-            "outputColor": "34"
-        },
-        {
-            "key": "│ {#34} term    {#keys}│",
-            "type": "terminal",
-            "outputColor": "34"
-        },
-        {
-            "key": "│ {#33}󰖯 wm      {#keys}│",
+            "key": "│ {#34} kernel  {#keys}│",
             "type": "command",
-            "text": "umbriel --version",
+            "text": "printf 'Linux %s' \"$(uname -r | cut -d- -f1)\"",
+            "outputColor": "34"
+        },
+        {
+            "key": "│ {#33}󰇄 desktop {#keys}│",
+            "type": "de",
             "outputColor": "33"
         },
         {
-            "key": "│ {#32}󰏖 pkg     {#keys}│",
-            "type": "packages",
+            "key": "│ {#32} term    {#keys}│",
+            "type": "terminal",
             "outputColor": "32"
         },
         {
-            "key": "│ {#31} shell   {#keys}│",
-            "type": "shell",
+            "key": "│ {#31}󰖯 wm      {#keys}│",
+            "type": "command",
+            "text": "umbriel --version",
             "outputColor": "31"
         },
         {
-            "key": "│ {#90}󰍛 cpu     {#keys}│",
-            "type": "cpu",
-            "format": "{name}",
+            "key": "│ {#90} shell   {#keys}│",
+            "type": "shell",
             "outputColor": "90"
         },
         {
-            "key": "│ {#37}󰢮 gpu     {#keys}│",
-            "type": "gpu",
+            "key": "│ {#37}󰍛 cpu     {#keys}│",
+            "type": "cpu",
             "format": "{name}",
             "outputColor": "37"
         },
         {
-            "key": "│ {#36}󰉉 disk    {#keys}│",
-            "type": "disk",
-            "folders": "/",
-            "format": "{size-used} / {size-total}",
+            "key": "│ {#36}󰢮 gpu     {#keys}│",
+            "type": "gpu",
+            "format": "{name}",
             "outputColor": "36"
         },
         {
-            "key": "│ {#35} memory  {#keys}│",
-            "type": "memory",
-            "format": "{used} / {total}",
+            "key": "│ {#35}󰉉 disk    {#keys}│",
+            "type": "disk",
+            "folders": "/",
+            "format": "{size-used} / {size-total}",
             "outputColor": "35"
         },
         {
-            "key": "│ {#34}󰩟 network {#keys}│",
-            "type": "localip",
-            "showPrefixLen": false,
-            "format": "{ipv4}",
+            "key": "│ {#34} memory  {#keys}│",
+            "type": "memory",
+            "format": "{used} / {total}",
             "outputColor": "34"
         },
         {
-            "key": "│ {#33}󰩠 public  {#keys}│",
+            "key": "│ {#33}󰩟 network {#keys}│",
+            "type": "localip",
+            "showPrefixLen": false,
+            "format": "{ipv4}",
+            "outputColor": "33"
+        },
+        {
+            "key": "│ {#32}󰩠 public  {#keys}│",
             "type": "publicip",
             "format": "{ip}",
-            "outputColor": "33"
+            "outputColor": "32"
         },
         {
             "key": "├───────────┤",
