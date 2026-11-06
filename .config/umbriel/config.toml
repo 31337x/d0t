@@ -162,7 +162,7 @@ numlock_toggle = true
 # Category: Applications
 "Mod+Space" = { action = "spawn noctalia msg panel-toggle launcher", repeat = false } # Launcher
 "Mod+Return" = { action = "spawn kitty", repeat = false } # Terminal
-"Mod+B" = { action = "spawn helium-browser-bin", repeat = false } # Web Browser
+"Mod+B" = { action = "spawn zen-browser", repeat = false } # Web Browser
 "Mod+Y" = { action = "spawn kitty -e yazi", repeat = false } # File Manager
 "Mod+H" = { action = "spawn kitty -e hx", repeat = false } # Text Editor
 "Mod+A" = { action = "spawn kitty --class codex --title Codex --directory /home/r00t -e /home/r00t/.local/bin/codex", repeat = false } # AI Agent
@@ -179,12 +179,12 @@ numlock_toggle = true
 
 # Category: Hardware Keys
 "Print" = { action = "spawn noctalia msg screenshot-region", repeat = false } # Screenshot
-#"XF86AudioRaiseVolume" = { action = "spawn noctalia msg volume-up", allow_when_locked = true } # Volume Up
-#"XF86AudioLowerVolume" = { action = "spawn noctalia msg volume-down", allow_when_locked = true } # Volume Down
-#"XF86AudioMute" = { action = "spawn noctalia msg volume-mute", allow_when_locked = true, repeat = false } # Mute Audio
-#"XF86AudioMicMute" = { action = "spawn noctalia msg mic-mute", allow_when_locked = true, repeat = false } # Mute Mic
-#"XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up", allow_when_locked = true } # Brightness Up
-#"XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down", allow_when_locked = true } # Brightness Down
+"XF86AudioRaiseVolume" = { action = "spawn noctalia msg volume-up", allow_when_locked = true } # Volume Up
+"XF86AudioLowerVolume" = { action = "spawn noctalia msg volume-down", allow_when_locked = true } # Volume Down
+"XF86AudioMute" = { action = "spawn noctalia msg volume-mute", allow_when_locked = true, repeat = false } # Mute Audio
+"XF86AudioMicMute" = { action = "spawn noctalia msg mic-mute", allow_when_locked = true, repeat = false } # Mute Mic
+"XF86MonBrightnessUp" = { action = "spawn noctalia msg brightness-up", allow_when_locked = true } # Brightness Up
+"XF86MonBrightnessDown" = { action = "spawn noctalia msg brightness-down", allow_when_locked = true } # Brightness Down
 
 # Category: Window Management
 "Mod+C" = { action = "window-center", repeat = false } # Center Floating
