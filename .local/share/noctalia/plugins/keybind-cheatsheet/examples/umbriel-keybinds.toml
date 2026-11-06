@@ -1,0 +1,14 @@
+# Example only: add these entries to your existing [keybinds] table,
+# or include this file from your Umbriel configuration.
+[keybinds]
+# Category: Applications
+"Mod+Return" = { action = "spawn:kitty", repeat = false } # Open my terminal
+"Mod+B" = { action = "spawn:zen-browser", repeat = false } # Open my browser
+# Category: Windows
+"Mod+W" = { action = "window-close", repeat = false } # Close the focused window
+"Mod+Left" = "window-focus-left" # Focus the window on the left
+"Mod+Right" = "window-focus-right" # Focus the window on the right
+# Category: Desktop
+"Mod+1" = "workspace-switch:1" # Switch to workspace 1
+"Mod+2" = "workspace-switch:2" # Switch to workspace 2
+"Mod+F1" = { action = "spawn:noctalia msg panel-toggle kenn/keybind-cheatsheet:cheatsheet", repeat = false } # Show my keyboard shortcuts
