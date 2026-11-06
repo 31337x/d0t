@@ -142,7 +142,7 @@ sudo dnf install -y \
 
 log "Installing applications and utilities"
 sudo dnf install -y \
-  cursor zen-browser kitty yazi helix helix-parsers btop bat fzf zoxide starship \
+  cursor helium-browser-bin kitty yazi helix helix-parsers btop bat fzf zoxide starship \
   fastfetch git-core tar ripgrep fd-find mpv imv freerdp \
   openfortivpn yt-dlp upower grim slurp ddcutil
 
