@@ -1,0 +1,11 @@
+[widget.volume]
+show_label = false
+
+[widget.brightness]
+show_label = false
+
+[widget.battery]
+show_label = false
+
+[widget.network]
+show_label = false
