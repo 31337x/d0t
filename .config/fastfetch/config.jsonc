@@ -52,47 +52,52 @@
             "outputColor": "33"
         },
         {
-            "key": "│ {#32} shell   {#keys}│",
-            "type": "shell",
+            "key": "│ {#32}󰏖 pkg     {#keys}│",
+            "type": "packages",
             "outputColor": "32"
         },
         {
-            "key": "│ {#31}󰍛 cpu     {#keys}│",
-            "type": "cpu",
-            "format": "{name}",
+            "key": "│ {#31} shell   {#keys}│",
+            "type": "shell",
             "outputColor": "31"
         },
         {
-            "key": "│ {#90}󰢮 gpu     {#keys}│",
-            "type": "gpu",
+            "key": "│ {#90}󰍛 cpu     {#keys}│",
+            "type": "cpu",
             "format": "{name}",
             "outputColor": "90"
         },
         {
-            "key": "│ {#37}󰉉 disk    {#keys}│",
-            "type": "disk",
-            "folders": "/",
-            "format": "{size-used} / {size-total}",
+            "key": "│ {#37}󰢮 gpu     {#keys}│",
+            "type": "gpu",
+            "format": "{name}",
             "outputColor": "37"
         },
         {
-            "key": "│ {#36} memory  {#keys}│",
-            "type": "memory",
-            "format": "{used} / {total}",
+            "key": "│ {#36}󰉉 disk    {#keys}│",
+            "type": "disk",
+            "folders": "/",
+            "format": "{size-used} / {size-total}",
             "outputColor": "36"
         },
         {
-            "key": "│ {#35}󰩟 network {#keys}│",
-            "type": "localip",
-            "showPrefixLen": false,
-            "format": "{ipv4}",
+            "key": "│ {#35} memory  {#keys}│",
+            "type": "memory",
+            "format": "{used} / {total}",
             "outputColor": "35"
         },
         {
-            "key": "│ {#34}󰩠 public  {#keys}│",
+            "key": "│ {#34}󰩟 network {#keys}│",
+            "type": "localip",
+            "showPrefixLen": false,
+            "format": "{ipv4}",
+            "outputColor": "34"
+        },
+        {
+            "key": "│ {#33}󰩠 public  {#keys}│",
             "type": "publicip",
             "format": "{ip}",
-            "outputColor": "34"
+            "outputColor": "33"
         },
         {
             "key": "├───────────┤",
