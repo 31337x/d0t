@@ -1,6 +1,0 @@
-[security_migrations]
-calendar_credentials_v1 = true
-
-[theme_templates]
-applied_builtin_ids = "btop gtk3 gtk4 helix kitty umbriel"
-applied_community_ids = "bat codex fzf starship yazi zen-browser"
