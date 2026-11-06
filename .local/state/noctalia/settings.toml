@@ -50,74 +50,6 @@ auto_locate = true
 [lockscreen]
 transition = [ "zoom" ]
 
-[lockscreen_widgets]
-enabled = true
-schema_version = 2
-widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@DP-2" ]
-
-    [lockscreen_widgets.grid]
-    cell_size = 16
-    major_interval = 4
-    visible = true
-
-    [lockscreen_widgets.widget."lockscreen-login-box@DP-2"]
-    box_height = 196.0
-    box_width = 810.0
-    cx = 1599.5
-    cy = 1647.4176025390625
-    output = "DP-2"
-    placement_height = 1799.0
-    placement_width = 3199.0
-    rotation = 0.0
-    type = "login_box"
-
-        [lockscreen_widgets.widget."lockscreen-login-box@DP-2".settings]
-        background_color = "surface_container"
-        background_opacity = 0.88
-        background_radius = 12.0
-        center_password_text = false
-        input_opacity = 1.0
-        input_radius = 6.0
-        layout = "regular"
-        show_caps_lock = true
-        show_keyboard_layout = true
-        show_login_button = true
-        show_media = true
-        show_media_controls = true
-        show_password_reveal = true
-        show_session_buttons = true
-        show_unlock_hint = true
-        show_weather = true
-
-    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 70.0
-    box_width = 400.0
-    cx = 960.0
-    cy = 895.0
-    output = "eDP-1"
-    placement_height = 1080.0
-    placement_width = 1920.0
-    rotation = 0.0
-    type = "login_box"
-
-        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
-        background_color = "surface_container"
-        background_opacity = 0.0
-        background_radius = 12.0
-        center_password_text = false
-        input_opacity = 0.5
-        input_radius = 6.0
-        layout = "compact"
-        show_caps_lock = false
-        show_keyboard_layout = false
-        show_login_button = false
-        show_media = true
-        show_media_controls = true
-        show_password_reveal = false
-        show_session_buttons = true
-        show_unlock_hint = false
-        show_weather = true
-
 [plugin_settings."oldirtty/color_picker"]
 picker_tool = "grim_slurp"
 
@@ -173,8 +105,8 @@ mode = "dark"
 source = "community"
 
     [theme.templates]
-    builtin_ids = [ "btop", "gtk3", "gtk4", "helix", "kitty", "umbriel" ]
-    community_ids = [ "codex", "zen-browser", "bat", "fzf", "starship", "yazi" ]
+    builtin_ids = [ "btop", "gtk3", "gtk4", "helix", "kcolorscheme", "kitty", "qt", "umbriel" ]
+    community_ids = [ "codex", "bat", "fzf", "starship", "yazi" ]
 
 [wallpaper]
 directory = "/home/r00t/Pictures/Wallpapers"
@@ -184,15 +116,6 @@ transition = [ "zoom" ]
 
     [wallpaper.default]
     path = "/home/r00t/Pictures/Wallpapers/008.jpg"
-
-    [wallpaper.last]
-    path = "/home/r00t/Pictures/Wallpapers/008.jpg"
-
-    [wallpaper.monitors.DP-2]
-    path = "/home/r00t/Pictures/Wallpapers/008.jpg"
-
-    [wallpaper.monitors.eDP-1]
-    path = "/home/r00t/Pictures/Wallpapers/007.jpg"
 
 [widget.audio_visualizer]
 bands = 128
