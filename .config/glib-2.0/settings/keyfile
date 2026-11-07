@@ -1,0 +1,18 @@
+[org/gnome/desktop/interface]
+gtk-theme='adw-gtk3-dark'
+color-scheme='prefer-dark'
+icon-theme='Papirus-Dark'
+
+[org/gtk/settings/file-chooser]
+window-position=(20, 20)
+window-size=(960, 474)
+date-format='regular'
+location-mode='path-bar'
+show-hidden=false
+show-size-column=true
+show-type-column=true
+sidebar-width=175
+sort-column='name'
+sort-directories-first=false
+sort-order='ascending'
+type-format='category'
