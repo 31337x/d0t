@@ -171,8 +171,8 @@ source = "community"
 
     [theme.templates]
     builtin_ids = [ "btop", "gtk3", "gtk4", "helix", "kcolorscheme", "kitty", "qt", "umbriel" ]
-    community_ids = [ "codex", "bat", "fzf", "starship", "yazi" ]
-
+    community_ids = [ "codex", "papirus-icons", "bat", "fzf", "starship", "yazi" ]
+    
 [wallpaper]
 directory = "/home/r00t/Pictures/Wallpapers"
 directory_dark = "/home/r00t/Pictures/Wallpapers"
