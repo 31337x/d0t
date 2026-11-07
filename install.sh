@@ -124,7 +124,7 @@ log "Installing greetd"
 sudo dnf install -y greetd
 
 log "Installing the desktop environment"
-sudo dnf install -y noctalia-nightly umbriel-nightly noctalia-greeter adw-gtk3-theme
+sudo dnf install -y noctalia-nightly umbriel-nightly noctalia-greeter adw-gtk3-theme papirus-icon-theme-dark
 
 log "Installing audio components"
 sudo dnf install -y pipewire pipewire-alsa pipewire-pulseaudio pipewire-utils wireplumber
