@@ -388,7 +388,7 @@ match.app_id = "^xdg-desktop-portal-gtk$"
 attach_to_parent = false
 default_floating = true
 default_maximize = false
-default_floating_size = { width = 0.5, height = 0.5 }
+default_floating_size = { width = 0.31, height = 0.31 }
 
 # Match Helium's native file picker directly, even before its parent is set.
 [[window_rule]]
