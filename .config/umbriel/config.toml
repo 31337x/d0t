@@ -381,3 +381,20 @@ border_color_unfocused = "#686868FF"
 [[window_rule]]
 match.app_id = "^steam_app_.*$"
 default_fullscreen = true
+
+# Open GTK portal file pickers at half the screen width and height.
+[[window_rule]]
+match.app_id = "^xdg-desktop-portal-gtk$"
+attach_to_parent = false
+default_floating = true
+default_maximize = false
+default_floating_size = { width = 0.5, height = 0.5 }
+
+# Match Helium's native file picker directly, even before its parent is set.
+[[window_rule]]
+match.app_id = "^helium-browser-bin$"
+match.title = "^(Save File|Open File|Open Files)$"
+attach_to_parent = false
+default_floating = true
+default_maximize = false
+default_floating_size = { width = 0.31, height = 0.31 }
