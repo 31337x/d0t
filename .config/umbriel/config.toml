@@ -139,8 +139,9 @@ numlock_toggle = true
 
 # Focus can follow the pointer across tiled, floating, and pinned windows.
 #
-# [input.focus]
-# follows_mouse = true
+[input.focus]
+follows_mouse = true
+hover_raises = false
 
 # Confine touch input to one display.
 #
@@ -388,7 +389,7 @@ match.app_id = "^xdg-desktop-portal-gtk$"
 attach_to_parent = false
 default_floating = true
 default_maximize = false
-default_floating_size = { width = 0.31, height = 0.31 }
+default_floating_size = { width = 0.5, height = 0.5 }
 
 # Match Helium's native file picker directly, even before its parent is set.
 [[window_rule]]
@@ -397,4 +398,4 @@ match.title = "^(Save File|Open File|Open Files)$"
 attach_to_parent = false
 default_floating = true
 default_maximize = false
-default_floating_size = { width = 0.31, height = 0.31 }
+default_floating_size = { width = 0.5, height = 0.5 }
