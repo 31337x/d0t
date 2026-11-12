@@ -7,5 +7,9 @@ edit = [
 ratio = [2, 3, 5]
 
 [[plugin.prepend_previewers]]
-mime = "{image,audio,video}/*"
+mime = "image/*"
 run = "center-media"
+
+[[plugin.prepend_previewers]]
+mime = "{audio,video}/*"
+run = "mediainfo"
