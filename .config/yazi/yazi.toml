@@ -4,12 +4,8 @@ edit = [
 ]
 
 [mgr]
-ratio = [3, 3, 3]
+ratio = [2, 3, 5]
 
 [[plugin.prepend_previewers]]
-mime = "image/*"
-run = "center-media --no-metadata"
-
-[[plugin.prepend_preloaders]]
-mime = "image/*"
-run = "center-media --no-metadata"
+mime = "{image,audio,video}/*"
+run = "center-media"
